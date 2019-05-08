@@ -46,25 +46,35 @@
         	
         	$M = \langle Q, \Sigma, \Gamma, \delta, q_0, \sqcup, F\rangle$ donde:\\
         	
-        	$Q = \{q_0, q_1, q_2, q_3, q_4, q_{acpt}\}$\\
-        	$\Sigma = \{0, X\}$\\
-        	$\Gamma = \{\sqcup, 0, X \}$
-        	\begin{align*}
-				\delta &:\\
-				&\delta(q_0, 0) = (q_1, \sqcup, \rightarrow)
-				&\delta(q_1, \sqcup) = (q_{acpt}, \sqcup, \rightarrow)\\
-				&\delta(q_1, X) = (q_{1}, X, \rightarrow)
-				&\delta(q_1, 0) = (q_2, X, \rightarrow)\\
-				&\delta(q_2, X) = (q_2, X, \rightarrow)
-				&\delta(q_2, 0) = (q_3, 0, \rightarrow)\\
-				&\delta(q_2, \sqcup) = (q_4, \sqcup, \leftarrow)
-				&\delta(q_3, X) = (q_3, X, \rightarrow)\\
-				&\delta(q_3, 0) = (q_3, X, \rightarrow)
-				&\delta(q_4, 0) = (q_4, 0, \leftarrow)\\
-				&\delta(q_4, X) = (q_4, X, \leftarrow)
-				&\delta(q_4, \sqcup) = (q_1, \sqcup, \rightarrow)\\
-        	\end{align*}
-        	$F = \{q_{acpt}\}$
+        	\begin{itemize}
+        		\item {
+        		$Q = \{q_0, q_1, q_2, q_3, q_4, q_{acpt}\}$\\
+        		}
+        		\item {
+        		$\Sigma = \{0, X\}$\\
+        		}
+        		\item {
+        		$\Gamma = \{\sqcup, 0, X \}$
+        		}
+        		\item {
+        		$\delta :$
+        		\begin{table}[H]
+        			\centering
+        			\begin{tabular}{c|l|l|l}
+        				q    & \multicolumn{1}{c|}{0}       & \multicolumn{1}{c|}{X}  & \multicolumn{1}{c}{$\sqcup$}      \\ \hline
+        				0    & $(q_1, \sqcup, \rightarrow)$ &                         &                                   \\
+        				1    & $(q_2, X, \rightarrow)$      & $(q_1, X, \rightarrow)$ & $(q_{acpt}, \sqcup, \rightarrow)$ \\
+        				2    & $(q_3, 0, \rightarrow)$      & $(q_2, X, \rightarrow)$ & $(q_4, \sqcup, \leftarrow)$       \\
+        				3    & $(q_3, X, \rightarrow)$      & $(q_3, X, \rightarrow)$ &                                   \\
+        				4    & $(q_4, 0, \leftarrow)$       & $(q_4, X, \leftarrow)$  & $(q_1, \sqcup, \rightarrow)$      \\
+        				acpt &                              &                         &                                  
+        			\end{tabular}
+        		\end{table}
+        		}
+        		\item {
+        			$F = \{q_{acpt}\}$		
+        		}
+        	\end{itemize}
         	        	
         	\begin{figure} [H]
         		\centering

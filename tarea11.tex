@@ -9,6 +9,7 @@
 
 %formato ecuaciones
 \usepackage{amsmath}
+\usepackage{mathtools}
 
 % símbolos
 \usepackage{amssymb}
@@ -39,13 +40,94 @@
 
     \begin{enumerate}
         \item {
-       	Diseña una Máquina de Turing que reconozca las cadenas del lenguaje
-        \begin{equation*}
-        	L = \{www | w \in \{a, b\}^* \}
-        \end{equation*}
+        	\begin{enumerate}
+        	\item {        	
+        	Da la especificación formal de M.\\
+        	
+        	$M = \langle Q, \Sigma, \Gamma, \delta, q_0, \sqcup, F\rangle$ donde:\\
+        	
+        	$Q = \{q_0, q_1, q_2, q_3, q_4, q_{acpt}\}$\\
+        	$\Sigma = \{0, X\}$\\
+        	$\Gamma = \{\sqcup, 0, X \}$
+        	\begin{align*}
+				\delta &:\\
+				&\delta(q_0, 0) = (q_1, \sqcup, \rightarrow)
+				&\delta(q_1, \sqcup) = (q_{acpt}, \sqcup, \rightarrow)\\
+				&\delta(q_1, X) = (q_{1}, X, \rightarrow)
+				&\delta(q_1, 0) = (q_2, X, \rightarrow)\\
+				&\delta(q_2, X) = (q_2, X, \rightarrow)
+				&\delta(q_2, 0) = (q_3, 0, \rightarrow)\\
+				&\delta(q_2, \sqcup) = (q_4, \sqcup, \leftarrow)
+				&\delta(q_3, X) = (q_3, X, \rightarrow)\\
+				&\delta(q_3, 0) = (q_3, X, \rightarrow)
+				&\delta(q_4, 0) = (q_4, 0, \leftarrow)\\
+				&\delta(q_4, X) = (q_4, X, \leftarrow)
+				&\delta(q_4, \sqcup) = (q_1, \sqcup, \rightarrow)\\
+        	\end{align*}
+        	$F = \{q_{acpt}\}$
+        	        	
+        	\begin{figure} [H]
+        		\centering
+        		\includegraphics[scale=.60]{MaquinaTuring1.png}
+        		\caption{Diagrama de la Máquina M}
+        	\end{figure}
+        }
+    	\item {
+    	Simula el comportamiento de la Máquina de Turing M con la entrada 00000000 usando una Máquina Universal $\mathcal{M}$\\
+    	
+    	Damos la siguiente codificación para $\mathcal{M}$:\\
+    	
+    	Codificación de la cinta:\\
+    	$\sqcup \coloneqq 1$\\
+    	$0 \coloneqq 11$\\
+    	$X \coloneqq 111$\\
+    	
+    	Codificación de estados:\\
+    	$q_i \coloneqq 1 ^{i + 1}$\\
+    	estado inicial $\coloneqq$ 1\\
+    	estado final $\coloneqq$ 111111\\
+    	
+    	Codificación de direcciones:\\
+    	$\rightarrow \coloneqq 1$\\
+    	$\leftarrow \coloneqq 11$\\
+    	$- \coloneqq 111$\\
+    	
+    	Codificamos las transiciones:\\
+    	\begin{align*}
+    	&\delta(q_0, 0) = (q_1, \sqcup, \rightarrow)
+    	&0101101101010\\
+    	&\delta(q_1, \sqcup) = (q_{acpt}, \sqcup, \rightarrow)
+    	&01101011111101010\\
+    	&\delta(q_1, X) = (q_{1}, X, \rightarrow)
+    	&01101110110111010\\
+    	&\delta(q_1, 0) = (q_2, X, \rightarrow)
+    	&01101101110111010\\
+    	&\delta(q_2, X) = (q_2, X, \rightarrow)
+    	&0111011101110111010\\
+    	&\delta(q_2, 0) = (q_3, 0, \rightarrow)
+    	&011101101111011010\\
+    	&\delta(q_2, \sqcup) = (q_4, \sqcup, \leftarrow)
+    	&011101011111010110\\
+    	&\delta(q_3, X) = (q_3, X, \rightarrow)
+    	&011110111011110111010\\
+    	&\delta(q_3, 0) = (q_3, X, \rightarrow)
+    	&01111011011110111010\\
+    	&\delta(q_4, 0) = (q_4, 0, \leftarrow)
+    	&0111110110111110110110\\
+    	&\delta(q_4, X) = (q_4, X, \leftarrow)
+    	&011111011101111101110110\\
+    	&\delta(q_4, \sqcup) = (q_1, \sqcup, \rightarrow)
+    	&0111110101101010
+    	\end{align*}
+    	
+    	Y codificamos la cadena: 011011011011011011011011\\
+    	}
+    \end{enumerate}
 		}
 		\item {
-		Codifica la MT del inciso anterior para que la Máquina Universal de Turing M pueda procesarla con la entrada aabaabaab
+		Describe el lenguaje aceptado por la Máquina de Turing del inciso anterior.\\
+		
+		$L = \{0^n | \text{ n es potencia de } 2 \}$
 		}
         
     \end{enumerate}
